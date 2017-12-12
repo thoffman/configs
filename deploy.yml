@@ -1,0 +1,6 @@
+- name: Configure
+  hosts: all
+  roles:
+    - i3
+    - fish
+    - vim

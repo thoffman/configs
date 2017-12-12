@@ -1,0 +1,8 @@
+---
+- name: Install fish
+  sudo: yes
+  apt: name=fish state=present update_cache=yes
+
+- name: Set Fish as default shell
+  user: name="{{user}}" shell="/usr/bin/fish" 
+

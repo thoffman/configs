@@ -1,0 +1,4 @@
+- name: Configure system
+  hosts: targets
+  roles:
+    - i3

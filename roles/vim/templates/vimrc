@@ -1,0 +1,34 @@
+let mapleader = ';'
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'easymotion/vim-easymotion'
+Plug 'wincent/command-t'
+Plug 'takac/vim-hardtime'
+Plug 'leafgarland/typescript-vim'
+Plug 'posva/vim-vue'
+
+call plug#end()
+
+set shiftwidth=2
+set tabstop=2
+set expandtab
+set wrap!
+set clipboard=unnamedplus
+set relativenumber
+set number
+
+set runtimepath^=~/.vim/plugged/ctrlp.vim
+
+" <Leader>f{char} to move to {char}
+nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+

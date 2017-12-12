@@ -1,0 +1,12 @@
+---
+- name: Install needed software
+  sudo: yes
+  apt: name={{item}} state=present update_cache=yes
+  with_items:
+    - rofi
+
+- name: Generate compton config
+  template: src="compton.conf" dest="/home/{{user}}/.compton.conf"
+
+- name: Generate i3 config
+  template: src="config" dest="/home/{{user}}/.i3/config"
