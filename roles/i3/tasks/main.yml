@@ -8,5 +8,78 @@
 - name: Generate compton config
   template: src="compton.conf" dest="/home/{{user}}/.compton.conf"
 
+
+- name: Add libxcb-xrm-dev repo
+  sudo: yes
+  apt_repository: repo=ppa:aguignard/ppa state=present update_cache=yes
+  when: env == "work"
+
+- name: Install common i3 packages
+  apt: name={{item}} state=present
+  with_items:
+    - libxcb1-dev
+    - libxcb-keysyms1-dev
+    - libpango1.0-dev
+    - libxcb-util0-dev
+    - libxcb-icccm4-dev
+    - libyajl-dev
+    - libstartup-notification0-dev
+    - libxcb-randr0-dev
+    - libev-dev
+    - libxcb-cursor-dev
+    - libxcb-xinerama0-dev
+    - libxcb-xkb-dev
+    - libxkbcommon-dev
+    - libxkbcommon-x11-dev
+    - autoconf
+
+- name: Install Ubuntu 16.04 specific packages
+  apt: name={{item}} state=present
+  with_items:
+    - libxcb-xrm-dev
+  when: env == "work"
+
+- name: Install Ubuntu 16.10+ packages
+  apt: name={{item}} state=present
+  with_items:
+    - libxcb-xrm0
+    - libxcb-xrm-dev
+    - automake
+  when: env != "work"
+
+- name: Clone i3-gaps
+  git: repo="https://www.github.com/Airblader/i3" dest="/home/{{user}}/Downloads/i3-gaps"
+
+- name: i3-gaps autoreconf --force --install
+  shell: autoreconf --force --install
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps
+
+- name: i3-gaps rm -rf build/
+  shell: rm -rf build/
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps
+
+- name: i3-gaps mkdir -p build/
+  shell: mkdir -p build/
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps
+
+- name: i3-gaps ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+  shell: ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps/build
+
+- name: i3-gaps make
+  shell: make
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps/build
+
+- name: i3-gaps make install
+  sudo: yes
+  shell: make
+  args:
+    chdir: /home/{{user}}/Downloads/i3-gaps/build
+
 - name: Generate i3 config
   template: src="config" dest="/home/{{user}}/.i3/config"
