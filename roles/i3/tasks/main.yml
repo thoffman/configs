@@ -7,7 +7,8 @@
 
 - name: Generate compton config
   template: src="compton.conf" dest="/home/{{user}}/.compton.conf"
-
+  tags:
+    - config
 
 - name: Add libxcb-xrm-dev repo
   sudo: yes
@@ -17,6 +18,12 @@
 - name: Install common i3 packages
   apt: name={{item}} state=present
   with_items:
+    - xcb-proto
+    - python-xcbgen
+    - libxcb-ewmh-dev
+    - libasound2-dev
+    - libcurl4-openssl-dev
+    - cmake
     - libxcb1-dev
     - libxcb-keysyms1-dev
     - libpango1.0-dev
@@ -81,5 +88,34 @@
   args:
     chdir: /home/{{user}}/Downloads/i3-gaps/build
 
-- name: Generate i3 config
+- name: Generate i3 config 
   template: src="config" dest="/home/{{user}}/.i3/config"
+  tags:
+    - config
+
+- name: Clone polybar
+  git: repo="https://github.com/jaagr/polybar" dest="/home/{{user}}/Downloads/polybar"
+
+- name: polybar mkdir build
+  file: path=/home/{{user}}/Downloads/polybar/build state=directory
+
+- name: polybar cmake
+  shell: cmake ..
+  args:
+    chdir: /home/{{user}}/Downloads/polybar/build
+
+- name: polybar make install 
+  sudo: yes
+  shell: make install 
+  args:
+    chdir: /home/{{user}}/Downloads/polybar/build
+
+- name: Generate polybar config
+  template: src="polybar_config" dest="/home/{{user}}/.config/polybar/config"
+  tags:
+    - config
+
+- name: Install polybar launch script
+  template: src="polybar_launcher.sh" dest="/home/{{user}}/.i3/polybar_launcher.sh" mode=u+x
+  tags:
+    - config

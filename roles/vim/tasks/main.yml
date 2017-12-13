@@ -8,3 +8,5 @@
 
 - name: Generate .vimrc
   template: src="vimrc" dest="/home/{{user}}/.vimrc"
+  tags:
+    - config

@@ -182,10 +182,7 @@ workspace 2 output VGA-1
 workspace 3 output HDMI-1
 workspace 4 output VGA-1
 {% elif env == "laptop" %}
-workspace 1 output HDMI-1
-workspace 2 output VGA-1
-workspace 3 output HDMI-1
-workspace 4 output VGA-1
+# Skipping xrandr and workspace config for laptop
 {% elif env == "desktop" %}
 exec xrandr --output HDMI3 --left-of VGA1
 workspace 1 output HDMI-1
@@ -211,24 +208,6 @@ assign [class="Code"] 2
 
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-clipman
-exec --no-startup-id /home/travis/.config/polybar/launch.sh
-
-bar {
-        status_command i3status 
-        position bottom
-	#font Hack
-        #font -xos4-terminus-medium-r-normal--12-120-72-72-C-60-iso8859-1
-# font -*-proggysquaresz-medium-r-normal-*-11-80-*-*-*-*-iso8859-1
-        workspace_buttons yes
-        colors  {
-                background #0F0F0F
-                statusline #D5D5D5
-                focused_workspace #F5F5FF #7FB256
-                active_workspace #E5E5E5 #5697B2
-                inactive_workspace #E5E5E5 #5697B2
-                urgent_workspace #E5E5E5 #BC9B54
-        }
-}
 
 gaps inner {{i3_inner_gap}} 
 gaps outer {{i3_outter_gap}} 
@@ -250,4 +229,5 @@ client.focused_inactive $color1 $color4 $black $red $color4
 client.unfocused $color1 $color4 $black $red $color4 
 
 exec --no-startup-id compton
+exec_always --no-startup-id /home/{{user}}/.i3/polybar_launcher.sh 
 #exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/travis/.i3/workspace-code.json'"
