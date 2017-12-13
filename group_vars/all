@@ -6,3 +6,6 @@ i3_color_2: "#5c82c9"
 i3_color_3: "#8aa2a9"
 i3_color_4: "#4c3b4d"
 i3_color_5: "#90baad"
+
+i3_inner_gap: 30
+i3_outter_gap: 0

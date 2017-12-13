@@ -150,16 +150,6 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-set $layout_mode Layout: c) Code
-mode "$layout_mode" {
-	bindsym c exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/travis/.i3/workspace-code.json'"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym $mod+Shift+x mode "$layout_mode"
-
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -240,8 +230,9 @@ bar {
         }
 }
 
-gaps inner 10 
-gaps outer 0 
+gaps inner {{i3_inner_gap}} 
+gaps outer {{i3_outter_gap}} 
+
 for_window [class="^.*"] border pixel 7 
 
 set $red {{i3_color_red}}
