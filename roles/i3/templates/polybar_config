@@ -33,11 +33,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-<<<<<<< HEAD
 border-size = 0 
-=======
-border-size = 0
->>>>>>> 7b6deb219b8db8e3a1d934a2ddb0eb294219af34
 border-color = #00000000
 
 padding-left = 0
@@ -129,7 +125,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-pin-workspaces = true
+pin-workspaces = false 
 
 label-mode-padding = 2
 label-mode-foreground = #000
