@@ -16,6 +16,7 @@
   when: env == "work"
 
 - name: Install common i3 packages
+  sudo: yes
   apt: name={{item}} state=present
   with_items:
     - xcb-proto
@@ -41,12 +42,14 @@
     - autoconf
 
 - name: Install Ubuntu 16.04 specific packages
+  sudo: yes
   apt: name={{item}} state=present
   with_items:
     - libxcb-xrm-dev
   when: env == "work"
 
 - name: Install Ubuntu 16.10+ packages
+  sudo: yes
   apt: name={{item}} state=present
   with_items:
     - libxcb-xrm0
