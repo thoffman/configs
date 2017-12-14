@@ -89,24 +89,16 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+        bindsym j resize shrink height 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink width 5 px or 5 ppt
+        bindsym h resize grow width 5 px or 5 ppt
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink width 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 50 px or 50 ppt
-        bindsym Down resize grow height 50 px or 50 ppt
-        bindsym Up resize shrink height 50 px or 50 ppt
-        bindsym Right resize grow width 50 px or 50 ppt
-
-        # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
@@ -223,11 +215,10 @@ set $color3 {{i3_color_3}}
 set $color4 {{i3_color_4}}
 set $color5 {{i3_color_5}}
 
-client.focused $color2 $color2 $black $color2 $color2
+client.focused $color2 $color2 $white $color2 $color2
 #client.focused_inactive $color4 $color2 $black $red $color1 
-client.focused_inactive $color1 $color4 $black $red $color4 
-client.unfocused $color1 $color4 $black $red $color4 
+client.focused_inactive $color1 $color4 $white $red $color4 
+client.unfocused $color1 $color4 $white $red $color4 
 
 exec --no-startup-id compton
 exec_always --no-startup-id /home/{{user}}/.i3/polybar_launcher.sh 
-#exec --no-startup-id "i3-msg 'workspace 2; append_layout /home/travis/.i3/workspace-code.json'"
