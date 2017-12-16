@@ -8,7 +8,9 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar1 and bar2
 polybar one &
+{% if env == "work" or env == "desktop" %}
 polybar two &
+{% endif %}
 
 
 echo "Bars launched..."
