@@ -89,15 +89,15 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink width 5 px or 5 ppt
-        bindsym h resize grow width 5 px or 5 ppt
+        bindsym j resize shrink height {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym k resize grow height {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym l resize shrink width {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym h resize grow width {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
 
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+        bindsym Left resize shrink width {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym Down resize grow height {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym Up resize shrink height {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
+        bindsym Right resize grow width {{i3_resize_px_inc}} px or {{i3_resize_ppt_inc}}
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -222,3 +222,6 @@ client.unfocused $color1 $color4 $white $red $color4
 
 exec --no-startup-id compton
 exec_always --no-startup-id /home/{{user}}/.i3/polybar_launcher.sh 
+{% if env == "laptop" %}
+exec --no-startup-id xinput set-prop "SynPS/2 Synaptics TouchPad" 278 1
+{% endif %}

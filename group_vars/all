@@ -7,5 +7,9 @@ i3_color_3: "#8aa2a9"
 i3_color_4: "#4c3b4d"
 i3_color_5: "#90baad"
 
+# In ppt
+i3_resize_ppt_inc: 5 
+i3_resize_px_inc: 10
+
 i3_inner_gap: 30
 i3_outter_gap: 0

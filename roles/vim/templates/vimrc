@@ -7,6 +7,10 @@ Plug 'wincent/command-t'
 Plug 'takac/vim-hardtime'
 Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
