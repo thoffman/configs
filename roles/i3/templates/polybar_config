@@ -23,6 +23,9 @@ bottom = true
 {% if env == "work" %}
 monitor = ${env:MONITOR_1:VGA1}
 {% endif %}
+{% if env == "desktop" %}
+monitor = ${env:MONITOR_1:HDMI-1}
+{% endif %}
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -76,6 +79,9 @@ cursor-scroll = ns-resize
 bottom = true
 {% if env == "work" %}
 monitor = ${env:MONITOR_2:HDMI3}
+{% endif %}
+{% if env == "desktop" %}
+monitor = ${env:MONITOR_2:VGA-1}
 {% endif %}
 width = 100%
 height = 20

@@ -1,5 +1,5 @@
 [targets]
 localhost ansible_connection=local
 
-[laptop:children]
+[desktop:children]
 targets
