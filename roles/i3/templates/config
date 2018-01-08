@@ -176,7 +176,7 @@ workspace 4 output VGA-1
 {% elif env == "laptop" %}
 # Skipping xrandr and workspace config for laptop
 {% elif env == "desktop" %}
-xrandr --output VGA-1 --right-of HDMI-1 
+exec xrandr --output VGA-1 --right-of HDMI-1 
 workspace 1 output HDMI-1
 workspace 2 output VGA-1
 workspace 3 output HDMI-1
